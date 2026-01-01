@@ -29,17 +29,19 @@ const Home = () => {
   return (
     <>
       {/* Background */}
-      <Image
-        className="object-cover h-screen -z-10 absolute top-0 left-0"
-        src={todayCharacter[currentIndex].assets.background}
-        alt="background"
-        width="2160"
-        height="1440"
-        loading="eager"
-      />
+      <div className="absolute top-0 left-0 h-screen w-screen overflow-hidden inset-0 select-none">
+        <Image
+          className="animate-fade-in object-cover absolute h-full"
+          src={todayCharacter[currentIndex].assets.background}
+          alt="background"
+          width="2160"
+          height="1440"
+          loading="eager"
+        />
+      </div>
 
       {/* Character information */}
-      <div className="flex flex-col h-screen relative text-white z-50 md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl mx-auto gap-4 p-4">
+      <div className="flex flex-col h-screen relative top-0 left-0 w-screen text-white z-50 md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl mx-auto gap-4 p-4">
         <div className="mb-auto"></div>
 
         <div className="my-auto">
