@@ -9,10 +9,11 @@ export interface Character {
   };
   assets: {
     avatar: string;
-    avatarFrom?: string | undefined;
+    avatarFrom?: string;
     background: string;
-    backgroundFrom?: string | undefined;
+    backgroundFrom?: string;
   };
+  extraContent: string;
 }
 
 export const characters: Character[] = [...january];

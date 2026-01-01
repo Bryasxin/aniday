@@ -11,5 +11,6 @@ export default [
       background: "/四宫辉夜/background.png",
       backgroundFrom: "Unknown",
     },
+    extraContent: "真是可爱啊～",
   },
 ] satisfies Character[];

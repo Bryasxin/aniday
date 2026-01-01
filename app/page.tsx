@@ -44,7 +44,9 @@ const Home = () => {
       <div className="flex flex-col h-screen relative top-0 left-0 w-screen text-white z-50 md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl mx-auto gap-4 p-4">
         <div className="mb-auto"></div>
 
-        <div className="my-auto">
+        <div className="my-auto flex gap-8 flex-col">
+          {/* Information */}
+          <div>
           {/* Name and birthday */}
           <div className="flex items-end gap-2">
             <div className="font-bold text-4xl">
@@ -58,8 +60,18 @@ const Home = () => {
           </div>
 
           {/* Character source */}
-          <div className="text-md text-neutral-300">
+            <div className="text-sm text-neutral-300">
             {characters[currentIndex]!.from}
+          </div>
+        </div>
+
+          {/* Extra content */}
+          <div className="text-2xl flex flex-col">
+            {characters[currentIndex]!.extraContent.split("\n").map(
+              (line, index) => (
+                <span key={index}>{line}</span>
+              )
+            )}
           </div>
         </div>
 
