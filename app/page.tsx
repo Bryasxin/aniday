@@ -47,23 +47,23 @@ const Home = () => {
         <div className="my-auto flex gap-8 flex-col">
           {/* Information */}
           <div>
-          {/* Name and birthday */}
-          <div className="flex items-end gap-2">
-            <div className="font-bold text-4xl">
-              {characters[currentIndex]!.name}
+            {/* Name and birthday */}
+            <div className="flex items-end gap-2">
+              <div className="font-bold text-4xl">
+                {characters[currentIndex]!.name}
+              </div>
+              <div className="text-md flex gap-2 text-neutral-300">
+                <span>{pad(characters[currentIndex]!.birthday.month, 2)}</span>
+                <span>/</span>
+                <span>{pad(characters[currentIndex]!.birthday.day, 2)}</span>
+              </div>
             </div>
-            <div className="text-md flex gap-2 text-neutral-300">
-              <span>{pad(characters[currentIndex]!.birthday.month, 2)}</span>
-              <span>/</span>
-              <span>{pad(characters[currentIndex]!.birthday.day, 2)}</span>
-            </div>
-          </div>
 
-          {/* Character source */}
+            {/* Character source */}
             <div className="text-sm text-neutral-300">
-            {characters[currentIndex]!.from}
+              {characters[currentIndex]!.from}
+            </div>
           </div>
-        </div>
 
           {/* Extra content */}
           <div className="text-2xl flex flex-col">
@@ -76,20 +76,24 @@ const Home = () => {
         </div>
 
         {/* Characters view */}
-        <div className="mt-auto flex gap-x-1">
-          {todayCharacter.map((c, i) => (
-            <button type="button" key={i} onClick={() => setCurrentIndex(i)}>
-              <Image
-                className="size-8 rounded-full"
-                src={c.assets.avatar}
-                alt="avatar"
-                width="64"
-                height="64"
-                loading="eager"
-              />
-            </button>
-          ))}
-        </div>
+        {todayCharacter.length > 1 ? (
+          <div className="mt-auto flex gap-x-1">
+            {todayCharacter.map((c, i) => (
+              <button type="button" key={i} onClick={() => setCurrentIndex(i)}>
+                <Image
+                  className="size-8 rounded-full"
+                  src={c.assets.avatar}
+                  alt="avatar"
+                  width="64"
+                  height="64"
+                  loading="eager"
+                />
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-auto"></div>
+        )}
       </div>
     </>
   );
