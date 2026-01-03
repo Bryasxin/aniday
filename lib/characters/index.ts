@@ -13,7 +13,7 @@ export interface Character {
     background: string;
     backgroundFrom?: string;
   };
-  extraContent: string;
+  extraContent: string[];
 }
 
 export const characters: Character[] = [...january];

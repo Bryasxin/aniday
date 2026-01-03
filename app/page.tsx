@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     const resetVisibleLines = () => {
       setVisibleLines([]);
-      const lines = characters[currentIndex]!.extraContent.split("\n");
+      const lines = characters[currentIndex]!.extraContent;
 
       lines.forEach((_, index) =>
         setTimeout(() => {
@@ -90,16 +90,14 @@ const Home = () => {
 
           {/* Extra content */}
           <div className="text-2xl flex flex-col">
-            {characters[currentIndex]!.extraContent.split("\n").map(
-              (line, index) => (
-                <span
-                  key={index}
-                  className={`transition ${visibleLines.includes(index) ? "line-fade-in" : "opacity-0"}`}
-                >
-                  {line}
-                </span>
-              )
-            )}
+            {characters[currentIndex]!.extraContent.map((line, index) => (
+              <span
+                key={index}
+                className={`transition ${visibleLines.includes(index) ? "line-fade-in" : "opacity-0"}`}
+              >
+                {line}
+              </span>
+            ))}
           </div>
         </div>
 
