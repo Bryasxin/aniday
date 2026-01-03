@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  --background-animation-duration: 10s;
+  --line-animation-duration: 2s;
+}
+
 .animate-fade-in {
-  animation: fade-in 10s ease-in-out;
+  animation: fade-in var(--background-animation-duration) ease-in-out;
+}
+
+.line-fade-in {
+  animation: line-fade-in var(--line-animation-duration) ease-in-out;
 }
 
 @keyframes fade-in {
@@ -10,5 +19,16 @@
   }
   to {
     scale: 1;
+  }
+}
+
+@keyframes line-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

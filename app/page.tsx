@@ -2,10 +2,13 @@
 
 import { characters } from "@/lib/characters";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const lineVisibleDuration: Readonly<number> = 2000 as const;
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
   const today = new Date();
   const todayCharacter = characters.filter(
@@ -17,6 +20,26 @@ const Home = () => {
   const pad = (num: number, size: number): string => {
     return String(num).padStart(size, "0");
   };
+
+  // HACK: What the fuck is this?
+  useEffect(() => {
+    const resetVisibleLines = () => {
+      setVisibleLines([]);
+      const lines = characters[currentIndex]!.extraContent.split("\n");
+
+      lines.forEach((_, index) =>
+        setTimeout(() => {
+          setVisibleLines((prev) => [...prev, index]);
+        }, index * lineVisibleDuration)
+      );
+    };
+
+    const promise = new Promise(resetVisibleLines);
+
+    return () => {
+      promise.finally();
+    };
+  }, [currentIndex]);
 
   if (todayCharacter.length === 0) {
     return (
@@ -69,7 +92,12 @@ const Home = () => {
           <div className="text-2xl flex flex-col">
             {characters[currentIndex]!.extraContent.split("\n").map(
               (line, index) => (
-                <span key={index}>{line}</span>
+                <span
+                  key={index}
+                  className={`transition ${visibleLines.includes(index) ? "line-fade-in" : "opacity-0"}`}
+                >
+                  {line}
+                </span>
               )
             )}
           </div>
